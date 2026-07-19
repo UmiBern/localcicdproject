@@ -9,14 +9,17 @@ terraform {
 
 provider "docker" {}
 
-# Reference the image Jenkins already built
-data "docker_image" "devops_project" {
+resource "docker_image" "devops_project" {
   name = "devops_project:latest"
+
+  build {
+    context = "."
+  }
 }
 
 resource "docker_container" "devops_project" {
   name  = "devops_project_container"
-  image = data.docker_image.devops_project.image_id
+  image = docker_image.devops_project.image_id
 
   ports {
     internal = 80

@@ -13,7 +13,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 sh '''
-                docker build -t devops_project:latest .
+                    docker build -t devops_project:latest .
                 '''
             }
         }
@@ -21,7 +21,7 @@ pipeline {
         stage('Terraform Init') {
             steps {
                 sh '''
-                terraform init
+                    terraform init
                 '''
             }
         }
@@ -29,7 +29,7 @@ pipeline {
         stage('Terraform Apply') {
             steps {
                 sh '''
-                terraform apply -auto-approve
+                    terraform apply -auto-approve
                 '''
             }
         }
