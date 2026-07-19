@@ -27,4 +27,10 @@ resource "docker_container" "devops_project" {
   }
 
   restart = "unless-stopped"
+
+  lifecycle {
+    replace_triggered_by = [
+      docker_image.devops_project.image_id
+    ]
+  }
 }
