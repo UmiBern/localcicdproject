@@ -18,6 +18,14 @@ pipeline {
             }
         }
 
+        stage('Cleanup Old Container') {
+            steps {
+                sh '''
+                    docker rm -f devops_project_container || true
+                '''
+            }
+        }
+
         stage('Terraform Init') {
             steps {
                 sh '''
