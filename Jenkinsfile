@@ -1,4 +1,5 @@
 pipeline {
+
     agent any
 
     stages {
@@ -11,19 +12,25 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t devops_project:latest .'
+                sh '''
+                docker build -t devops_project:latest .
+                '''
             }
         }
 
         stage('Terraform Init') {
             steps {
-                sh 'terraform init'
+                sh '''
+                terraform init
+                '''
             }
         }
 
         stage('Terraform Apply') {
             steps {
-                sh 'terraform apply -auto-approve'
+                sh '''
+                terraform apply -auto-approve
+                '''
             }
         }
     }
